@@ -3,13 +3,25 @@ package Algorithm.GraphTraveral;
 import java.util.*;
 import java.io.*;
 
-// ASCII 코드로 변형해서 LinkedList로 이용하자...
-
 public class BFS {
-    static Map<String, String[]> graph = new HashMap<>();
+    static Map<Integer, Integer[]> graph = new HashMap<>();
 
-    public static void BFS(boolean[] visited) {
-        Queue<String> q = new LinkedList<String>();
+    public static void BFS(int v, boolean[] visited) {
+        Queue<Integer> q = new LinkedList<Integer>();
+        q.add(v);
+        visited[v] = true;
+
+        while (!q.isEmpty()) {
+            v = q.poll();
+            System.out.print((char) (v + 65) + " ");
+            Integer[] arr = graph.get(v);
+            for (int i : arr) {
+                if (!visited[i]) {
+                    q.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -23,18 +35,20 @@ public class BFS {
         }
 
         for (String[] c : graph_arr) {
-            String[] v = new String[(int) c.length / 2];
+            Integer[] v = new Integer[(int) c.length / 2];
             for (int i = 0; i < v.length; i++) {
-                v[i] = c[i * 2 + 1];
+                v[i] = c[i * 2 + 1].charAt(0) - 65;
             }
-            graph.put(c[0], v);
+            graph.put((c[0].charAt(0) - 65), v);
         }
 
         boolean[] visited = new boolean[graph_arr.size()];
 
-        graph.entrySet().forEach(item -> System.out.println(item.getKey() + " : " + Arrays.toString(item.getValue())));
-        System.out.println(Arrays.toString(visited));
 
-        BFS(visited);
+        BFS(0, visited);
+
+        // 출력부, 아스키코드 역순으로 출력하면 될듯.
+//        graph.entrySet().forEach(item -> System.out.println(item.getKey() + " : " + Arrays.toString(item.getValue())));
+//        System.out.println(Arrays.toString(visited));
     }
 }
