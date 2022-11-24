@@ -8,18 +8,18 @@ public class Kruskal {
     static int[] parent;
     static int final_cost;
 
-    public static void main(String[] args) throws IOException {
+    public static void search() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
-        ArrayList<String[]> graph_arr = new ArrayList<>();
+        ArrayList<String[]> vertex = new ArrayList<>();
 
 
         String str;
         while ((str = br.readLine()) != null) {
             String[] s = str.split(" ");
-            graph_arr.add(s);
+            vertex.add(s);
         }
 
-        for (String[] c : graph_arr) {
+        for (String[] c : vertex) {
             for (int i = 1; i < c.length; i += 2) {
                 Integer[] v = new Integer[3];
                 v[0] = c[0].charAt(0) - 65;
@@ -31,10 +31,10 @@ public class Kruskal {
 
         graph.sort((a, b) -> a[2].compareTo(b[2]));
 
-        parent = new int[graph_arr.size()];
+        parent = new int[vertex.size()];
         final_cost = 0;
 
-        for (int i = 0; i < graph_arr.size(); i++) {
+        for (int i = 0; i < vertex.size(); i++) {
             parent[i] = i;
         }
 

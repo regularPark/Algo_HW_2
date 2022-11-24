@@ -26,15 +26,15 @@ public class BFS {
 
     public static void search() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
-        ArrayList<String[]> graph_arr = new ArrayList<>();
+        ArrayList<String[]> vertex = new ArrayList<>();
 
         String str;
         while ((str = br.readLine()) != null) {
             String[] s = str.split(" ");
-            graph_arr.add(s);
+            vertex.add(s);
         }
 
-        for (String[] c : graph_arr) {
+        for (String[] c : vertex) {
             Integer[] v = new Integer[(int) c.length / 2];
             for (int i = 0; i < v.length; i++) {
                 v[i] = c[i * 2 + 1].charAt(0) - 65;
@@ -42,7 +42,7 @@ public class BFS {
             graph.put((c[0].charAt(0) - 65), v);
         }
 
-        boolean[] visited = new boolean[graph_arr.size()];
+        boolean[] visited = new boolean[vertex.size()];
 
         System.out.print("BFS : ");
         bfs(0, visited);
