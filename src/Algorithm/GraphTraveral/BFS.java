@@ -6,7 +6,7 @@ import java.io.*;
 public class BFS {
     static Map<Integer, Integer[]> graph = new HashMap<>();
 
-    public static void BFS(int v, boolean[] visited) {
+    public static void bfs(int v, boolean[] visited) {
         Queue<Integer> q = new LinkedList<Integer>();
         q.add(v);
         visited[v] = true;
@@ -24,7 +24,7 @@ public class BFS {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void search() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
         ArrayList<String[]> graph_arr = new ArrayList<>();
 
@@ -44,8 +44,9 @@ public class BFS {
 
         boolean[] visited = new boolean[graph_arr.size()];
 
-
-        BFS(0, visited);
+        System.out.print("BFS : ");
+        bfs(0, visited);
+        System.out.println();
 
         // 출력부, 아스키코드 역순으로 출력하면 될듯.
 //        graph.entrySet().forEach(item -> System.out.println(item.getKey() + " : " + Arrays.toString(item.getValue())));
