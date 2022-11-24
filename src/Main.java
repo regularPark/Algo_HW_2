@@ -1,4 +1,5 @@
 import Algorithm.GraphTraveral.*;
+import Algorithm.MST.*;
 
 
 import java.io.IOException;
@@ -10,6 +11,12 @@ public class Main {
 
         DFS dfs = new DFS();
         dfs.search();
+
+        Kruskal kruskal = new Kruskal();
+        kruskal.search();
+
+        Prim prim = new Prim();
+        prim.search();
 
     }
 }
