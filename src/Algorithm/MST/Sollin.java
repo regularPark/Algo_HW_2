@@ -14,7 +14,7 @@ class Graph_Edge {
         this.cost = cost;
     }
 
-    public String toString(){
+    public String toString() {
         return this.v + " " + this.u + " " + this.cost;
     }
 }
@@ -22,7 +22,10 @@ class Graph_Edge {
 public class Sollin {
     public static ArrayList<Graph_Edge> graph = new ArrayList<Graph_Edge>();
     public static boolean[] visited;
+    static int parent[];
+    static int Min[];
     public static int final_cost = 0;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
         ArrayList<String[]> vertex = new ArrayList<>();
@@ -45,11 +48,60 @@ public class Sollin {
             }
         }
 
-        for(Graph_Edge i : graph) {
-            System.out.println(i.toString());
+
+        int edges = graph.size();
+        int components = vertex.size();
+        final_cost = 0;
+
+        parent = new int[components];
+        Min = new int[components];
+        for (int i = 0; i < components; i++) {
+            parent[i] = i;
         }
 
-//        System.out.println(graph.toString());
+        while (components > 1) {
+            for (int i = 0; i < vertex.size(); i++) {
+                Min[i] = -1;
+            }
+            for (int i = 0; i < edges; i++) {
+                if (root(graph.get(i).v) == root(graph.get(i).u)) continue;
 
+                int r_v = root(graph.get(i).v);
+                if(Min[r_v] == -1 || graph.get(i).cost < graph.get(Min[r_v]).cost) {
+                    Min[r_v] = i;
+                }
+
+                int r_u = root(graph.get(i).u);
+                if(Min[r_u] == -1 || graph.get(i).cost < graph.get(Min[r_u]).cost) {
+                    Min[r_u] = i;
+                }
+            }
+            for (int i = 0; i< vertex.size(); i++) {
+                if(Min[i] != -1) {
+                    if(merge(graph.get(Min[i]).v, graph.get(Min[i]).u)) {
+                        final_cost += graph.get(Min[i]).cost;
+                        components--;
+                    }
+                }
+            }
+        }
+        System.out.println(final_cost);
+    }
+
+    static int root(int v) {
+        if (parent[v] == v) {
+            return v;
+        }
+        return parent[v] = root(parent[v]);
+    }
+
+    static boolean merge(int v, int u) {
+        v = root(v);
+        u = root(u);
+        if(v == u) {
+            return false;
+        }
+        parent[v] = u;
+        return true;
     }
 }
