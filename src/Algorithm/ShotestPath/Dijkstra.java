@@ -62,32 +62,30 @@ public class Dijkstra {
             int nodeValue = Integer.MAX_VALUE;
             int nodeIdx = 0;
             for (int j = 0; j < vertex.size(); j++) {
-                if(!visited[j] && dist[j] < nodeValue) {
+                if (!visited[j] && dist[j] < nodeValue) {
                     nodeValue = dist[j];
                     nodeIdx = j;
                 }
             }
             visited[nodeIdx] = true;
 
-            for(int j =0; j < graph.get(nodeIdx).size(); j++) {
+            for (int j = 0; j < graph.get(nodeIdx).size(); j++) {
                 Node adjNode = graph.get(nodeIdx).get(j);
-                if(dist[adjNode.idx] > dist[nodeIdx] + adjNode.cost) {
+                if (dist[adjNode.idx] > dist[nodeIdx] + adjNode.cost) {
                     dist[adjNode.idx] = dist[nodeIdx] + adjNode.cost;
                 }
             }
         }
 
         System.out.println("Dijkstra's Algorithm");
-        for(int i = 0; i < vertex.size(); i++) {
-            if(dist[i] == Integer.MAX_VALUE) {
+        for (int i = 0; i < vertex.size(); i++) {
+            if (dist[i] == Integer.MAX_VALUE) {
                 System.out.print("INF");
             } else {
-                System.out.print("(" + (char)(i + 65)+ " " + dist[i] + ") ");
+                System.out.print("(" + (char) (i + 65) + " " + dist[i] + ") ");
             }
         }
-
-
-            br.close();
+        br.close();
     }
 
 
