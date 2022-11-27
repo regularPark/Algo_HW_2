@@ -25,6 +25,7 @@ public class Sollin {
     static int parent[];
     static int Min[];
     public static int final_cost = 0;
+    static StringBuilder sb = new StringBuilder("");
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
@@ -85,7 +86,9 @@ public class Sollin {
                 }
             }
         }
+        System.out.println(sb);
         System.out.println(final_cost);
+
     }
 
     static int root(int v) {
@@ -102,6 +105,8 @@ public class Sollin {
             return false;
         }
         parent[v] = u;
+        sb.append((char)(v + 65) + " ");
+
         return true;
     }
 }
