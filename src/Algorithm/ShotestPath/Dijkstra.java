@@ -25,7 +25,7 @@ public class Dijkstra {
     static int final_cost;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("Graph5.txt"));
         ArrayList<String[]> vertex = new ArrayList<>();
 
 
@@ -56,7 +56,7 @@ public class Dijkstra {
 
         visited = new boolean[vertex.size()];
         // 이후에 출발점 입력 받고 변경하는 과정 거칠것.
-        dist[0] = 0;
+        dist[2] = 0;
 
         for (int i = 0; i < vertex.size(); i++) {
             int nodeValue = Integer.MAX_VALUE;
