@@ -8,8 +8,8 @@ public class Kruskal {
     static int[] parent;
     static int final_cost;
 
-    public static void search() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+    public static void search(String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
 
@@ -38,31 +38,22 @@ public class Kruskal {
             parent[i] = i;
         }
 
+        System.out.println("<선택된 간선>");
         for (int i = 0; i < graph.size(); i++) {
             if (find(graph.get(i)[0]) != find(graph.get(i)[1])) {
-                System.out.println("<선택된 간선>");
-                System.out.println((char) (graph.get(i)[0] + 65) + " " + (char) (graph.get(i)[1] + 65));
+                System.out.print((char) (graph.get(i)[0] + 65) + " " + (char) (graph.get(i)[1] + 65) + " / ");
                 union(graph.get(i)[0], graph.get(i)[1]);
                 final_cost += graph.get(i)[2];
                 continue;
             }
         }
-        System.out.println("<각 노드가 가리키고 있는 부모>");
-        for (int i = 0 ; i < parent.length; i++) {
-            System.out.print((char)(i + 65)+ " ");
-        }
-        System.out.println("");
-        for(int i : parent) {
-            System.out.print((char)(i + 65)+ " ");
-        }
 
         System.out.println("\n최종 비용 : " + final_cost);
+    }
 
-
-//        for(Integer[] i : graph) {
-//            System.out.println(Arrays.toString(i));
-//        }
-
+    public static void init() {
+        final_cost = 0;
+        graph.clear();
     }
 
     private static void union(int a, int b) {

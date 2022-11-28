@@ -24,8 +24,8 @@ public class BFS {
         }
     }
 
-    public static void search() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+    public static void search(int start, String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
         String str;
@@ -45,7 +45,12 @@ public class BFS {
         boolean[] visited = new boolean[vertex.size()];
 
         System.out.print("BFS : ");
-        bfs(0, visited);
+        if(start < vertex.size()){
+            bfs(start, visited);
+        } else {
+            System.out.print("출발점이 범위를 벗어났습니다.");
+        }
+
         System.out.println();
 
         // 출력부, 아스키코드 역순으로 출력하면 될듯.

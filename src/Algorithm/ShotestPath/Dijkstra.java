@@ -24,8 +24,8 @@ public class Dijkstra {
 
     static int final_cost;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph5.txt"));
+    public static void search(int start, String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
 
@@ -56,7 +56,7 @@ public class Dijkstra {
 
         visited = new boolean[vertex.size()];
         // 이후에 출발점 입력 받고 변경하는 과정 거칠것.
-        dist[2] = 0;
+        dist[start] = 0;
 
         for (int i = 0; i < vertex.size(); i++) {
             int nodeValue = Integer.MAX_VALUE;
@@ -77,16 +77,19 @@ public class Dijkstra {
             }
         }
 
-        System.out.println("Dijkstra's Algorithm");
+        System.out.print("Dijkstra : ");
         for (int i = 0; i < vertex.size(); i++) {
             if (dist[i] == Integer.MAX_VALUE) {
                 System.out.print("INF");
             } else {
-                System.out.print("(" + (char) (i + 65) + " " + dist[i] + ") ");
+                System.out.print((char) (i + 65) + ":" + dist[i] + "   ");
             }
         }
+        System.out.println();
         br.close();
     }
 
-
+    public void init(){
+        graph.clear();
+    }
 }

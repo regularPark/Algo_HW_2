@@ -15,8 +15,8 @@ public class DFS {
             }
         }
     }
-    public static void search() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+    public static void search(int start, String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
         String str;
@@ -36,7 +36,11 @@ public class DFS {
         boolean[] visited = new boolean[vertex.size()];
 
         System.out.print("DFS : ");
-        dfs(0, visited); // 차후에 v는 입력 받은 것으로 바꿔야 함
+        if(start < vertex.size()){
+            dfs(start, visited);
+        } else {
+            System.out.print("출발점이 범위를 벗어났습니다.");
+        }
         System.out.println();
     }
 }

@@ -27,8 +27,8 @@ public class Sollin {
     public static int final_cost = 0;
     static StringBuilder sb = new StringBuilder("");
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+    public static void search(String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
 
@@ -68,27 +68,32 @@ public class Sollin {
                 if (root(graph.get(i).v) == root(graph.get(i).u)) continue;
 
                 int r_v = root(graph.get(i).v);
-                if(Min[r_v] == -1 || graph.get(i).cost < graph.get(Min[r_v]).cost) {
+                if (Min[r_v] == -1 || graph.get(i).cost < graph.get(Min[r_v]).cost) {
                     Min[r_v] = i;
                 }
 
                 int r_u = root(graph.get(i).u);
-                if(Min[r_u] == -1 || graph.get(i).cost < graph.get(Min[r_u]).cost) {
+                if (Min[r_u] == -1 || graph.get(i).cost < graph.get(Min[r_u]).cost) {
                     Min[r_u] = i;
                 }
             }
-            for (int i = 0; i< vertex.size(); i++) {
-                if(Min[i] != -1) {
-                    if(merge(graph.get(Min[i]).v, graph.get(Min[i]).u)) {
+            for (int i = 0; i < vertex.size(); i++) {
+                if (Min[i] != -1) {
+                    if (merge(graph.get(Min[i]).v, graph.get(Min[i]).u)) {
                         final_cost += graph.get(Min[i]).cost;
                         components--;
                     }
                 }
             }
         }
-        System.out.println(sb);
-        System.out.println(final_cost);
+        System.out.println("선택된 간선 : " + sb);
+        System.out.println("최종 비용 : " + final_cost);
+    }
 
+    public void init() {
+        graph.clear();
+        sb.setLength(0);
+        final_cost = 0;
     }
 
     static int root(int v) {
@@ -101,11 +106,11 @@ public class Sollin {
     static boolean merge(int v, int u) {
         v = root(v);
         u = root(u);
-        if(v == u) {
+        if (v == u) {
             return false;
         }
         parent[v] = u;
-        sb.append((char)(v + 65) + " ");
+        sb.append((char) (v + 65) + "->" + (char) (u + 65) + "   ");
 
         return true;
     }

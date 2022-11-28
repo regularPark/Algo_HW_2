@@ -7,8 +7,8 @@ public class Floyd_Warshall {
     static int[][] dist;
     static StringBuilder sb = new StringBuilder("");
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+    public static void search(String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
 
@@ -44,12 +44,16 @@ public class Floyd_Warshall {
         for (int i = 0; i < len; i++) {
             for(int j =0 ; j < len; j++) {
                 if(dist[i][j] == Integer.MAX_VALUE) {
-                    System.out.print("* ");
+                    System.out.print("*\t");
                 } else {
-                    System.out.print(dist[i][j] + " ");
+                    System.out.print(dist[i][j] + "\t");
                 }
             }
             System.out.println();
         }
+    }
+
+    public void init(){
+
     }
 }

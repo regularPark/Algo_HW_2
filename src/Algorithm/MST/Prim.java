@@ -34,8 +34,8 @@ public class Prim {
     static StringBuilder sb = new StringBuilder("");
     static int cost = 0;
 
-    public static void search() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("Graph1.txt"));
+    public static void search(int start_, String FileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
         String str;
@@ -69,11 +69,18 @@ public class Prim {
 
         visited = new boolean[graph.size()];
         Arrays.fill(visited, false);
-        prim(0); // 추후 시작 지점 입력받기. 현재는 A로 시작한 경우임
+        prim(start_); // 추후 시작 지점 입력받기. 현재는 A로 시작한 경우임
 //        System.out.println(graph.toString());
+        System.out.println("방문 순서 : " + (char) (start_ + 65) + " " + sb);
+        System.out.println("최종비용 : " + cost);
 
-        System.out.println(cost);
-        System.out.println(sb);
+
+    }
+
+    public static void init() {
+        graph.clear();
+        cost = 0;
+        sb.setLength(0);
     }
 
     public static void prim(int p) {
@@ -95,7 +102,7 @@ public class Prim {
                 if (!visited[e.end]) {
                     q.add(e.end);
                     visited[e.end] = true;
-                    sb.append(String.valueOf((char)(e.end + 65)));
+                    sb.append(String.valueOf((char) (e.end + 65)) + " ");
                     // StringBuilder 사용 각 나옴
                     cost += e.cost;
                     break;
