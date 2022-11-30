@@ -6,7 +6,7 @@ import java.util.*;
 public class Floyd_Warshall {
     static int[][] dist;
 
-    public static void search(String FileName) throws IOException {
+    public static void search(int input_start, String FileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(FileName));
         ArrayList<String[]> vertex = new ArrayList<>();
 
@@ -36,20 +36,29 @@ public class Floyd_Warshall {
                 int end = c[i].charAt(0) - 65;
                 int cost = Integer.parseInt(c[i + 1]);
 
-                if (!FileName.equals( "Graph5.txt") && !FileName.equals("Graph6.txt")) {
+                if (!FileName.equals("Graph5.txt") && !FileName.equals("Graph6.txt")) {
                     dist[start][end] = Math.min(dist[start][end], cost);
                     dist[end][start] = Math.min(dist[end][start], cost);
                 }
-                if (FileName.equals( "Graph5.txt") || FileName.equals("Graph6.txt")) {
+                if (FileName.equals("Graph5.txt") || FileName.equals("Graph6.txt")) {
                     dist[start][end] = Math.min(dist[start][end], cost);
                 }
             }
         }
 
-        for (int i = 0; i < len; i++) {
-            for (int j = 0; j < len; j++) {
-                for (int k = 0; k < len; k++) {
+        for (int i = input_start; i < len; i++) {
+            for (int j = input_start; j < len; j++) {
+                for (int k = input_start; k < len; k++) {
                     dist[j][k] = Math.min(dist[j][k], dist[j][i] + dist[i][k]);
+                }
+            }
+        }
+        if (input_start != 0) {
+            for (int i = input_start - 1; i >= 0; i--) {
+                for (int j = input_start - 1; j >= 0; j--) {
+                    for (int k = input_start - 1; k >= 0; k--) {
+                        dist[j][k] = Math.min(dist[j][k], dist[j][i] + dist[i][k]);
+                    }
                 }
             }
         }
@@ -67,7 +76,4 @@ public class Floyd_Warshall {
         }
     }
 
-    public void init() {
-
-    }
 }

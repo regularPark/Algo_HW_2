@@ -28,60 +28,94 @@ public class Main {
             }
         }
 
-//        BFS bfs = new BFS();
-//        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
-//            System.out.print("#" + i + " ");
-//            bfs.search(start, "Graph" + i + ".txt");
-//        }
-//
-//        System.out.println();
-//
-//        DFS dfs = new DFS();
-//        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
-//            System.out.print("#" + i + " ");
-//            dfs.search(start, "Graph" + i + ".txt");
-//        }
-//
-//        System.out.println();
-//
-//        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
-//            Kruskal kruskal = new Kruskal();
-//            System.out.print("#" + i + " ");
-//            kruskal.search("Graph" + i + ".txt");
-//            kruskal.init();
-//        }
-//
-//        System.out.println();
-//
-//        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
-//            Prim prim = new Prim();
-//            System.out.print("#" + i + " ");
-//            prim.search(start, "Graph" + i + ".txt");
-//            prim.init();
-//        }
+        BFS bfs = new BFS();
+        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_bfs = System.currentTimeMillis();
 
-//        System.out.println();
+            System.out.print("#" + i + " ");
+            bfs.search(start, "Graph" + i + ".txt");
+
+            long end_bfs = System.currentTimeMillis();
+            System.out.println("BFS 수행 시간 : " + (end_bfs - start_bfs) / 1000.0 + "\n");
+        }
+
+        System.out.println();
+
+        DFS dfs = new DFS();
+        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_dfs = System.currentTimeMillis();
+
+            System.out.print("#" + i + " ");
+            dfs.search(start, "Graph" + i + ".txt");
+
+            long end_dfs = System.currentTimeMillis();
+            System.out.println("DFS 수행 시간 : " + (end_dfs - start_dfs) / 1000.0 + "\n");
+        }
+
+        System.out.println();
+
+        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_kruskal = System.currentTimeMillis();
+
+            Kruskal kruskal = new Kruskal();
+            System.out.print("#" + i + " ");
+            kruskal.search("Graph" + i + ".txt");
+
+            long end_kruskal = System.currentTimeMillis();
+            System.out.println("Kruskal 수행 시간 : " + (end_kruskal - start_kruskal) / 1000.0 + "\n");
+            kruskal.init();
+        }
+
+        System.out.println();
+
+        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_prim = System.currentTimeMillis();
+
+            Prim prim = new Prim();
+            System.out.print("#" + i + " ");
+            prim.search(start, "Graph" + i + ".txt");
+
+            long end_prim = System.currentTimeMillis();
+            System.out.println("Prim 수행 시간 : " + (end_prim - start_prim) / 1000.0 + "\n");
+            prim.init();
+        }
+
+        System.out.println();
 
 
-//        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
-//            Sollin sollin = new Sollin();
-//            System.out.print("#" + i + " ");
-//            sollin.search("Graph" + i + ".txt");
-//            sollin.init();
-//        }
+        for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_sollin = System.currentTimeMillis();
+
+            Sollin sollin = new Sollin();
+            System.out.print("#" + i + " ");
+            sollin.search("Graph" + i + ".txt");
+
+            long end_sollin = System.currentTimeMillis();
+            System.out.println("Sollin 수행 시간 : " + (end_sollin - start_sollin) / 1000.0 + "\n");
+            sollin.init();
+        }
         System.out.println();
         for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_dijkstra = System.currentTimeMillis();
+
             System.out.print("#" + i + " ");
             Dijkstra dijkstra = new Dijkstra();
             dijkstra.search(start, "Graph" + i + ".txt");
+
+            long end_dijkstra = System.currentTimeMillis();
+            System.out.println("Dijkstra 수행 시간 : " + (end_dijkstra - start_dijkstra) / 1000.0 + "\n");
             dijkstra.init();
         }
         System.out.println();
         for (int i = 1; i <= NUM_OF_GRAPH; i++) {
+            long start_floyd = System.currentTimeMillis();
+
             System.out.println("#" + i + " Floyd-Warshall");
             Floyd_Warshall floyd_warshall = new Floyd_Warshall();
-            floyd_warshall.search("Graph" + i + ".txt");
-//            floyd_warshall.init();
+            floyd_warshall.search(start, "Graph" + i + ".txt");
+
+            long end_floyd = System.currentTimeMillis();
+            System.out.println("Floyd-Warshall 수행 시간 : " + (end_floyd - start_floyd) / 1000.0 + "\n");
         }
     }
 }
