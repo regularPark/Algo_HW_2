@@ -35,6 +35,10 @@ public class Dijkstra {
             vertex.add(s);
             graph.add(new ArrayList<>());
         }
+        if (start >= vertex.size()){
+            System.out.println("출발점이 범위를 벗어났습니다");
+            return;
+        }
 
         for (String[] c : vertex) {
             for (int i = 1; i < c.length; i += 2) {

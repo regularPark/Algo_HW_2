@@ -58,7 +58,7 @@ public class Main {
             long start_kruskal = System.currentTimeMillis();
 
             Kruskal kruskal = new Kruskal();
-            System.out.print("#" + i + " ");
+            System.out.print("#" + i + " Kruskal : ");
             kruskal.search("Graph" + i + ".txt");
 
             long end_kruskal = System.currentTimeMillis();
@@ -72,7 +72,7 @@ public class Main {
             long start_prim = System.currentTimeMillis();
 
             Prim prim = new Prim();
-            System.out.print("#" + i + " ");
+            System.out.print("#" + i + " Prim : ");
             prim.search(start, "Graph" + i + ".txt");
 
             long end_prim = System.currentTimeMillis();
@@ -87,7 +87,7 @@ public class Main {
             long start_sollin = System.currentTimeMillis();
 
             Sollin sollin = new Sollin();
-            System.out.print("#" + i + " ");
+            System.out.print("#" + i + " Sollin : ");
             sollin.search("Graph" + i + ".txt");
 
             long end_sollin = System.currentTimeMillis();
@@ -98,7 +98,7 @@ public class Main {
         for (int i = 1; i <= NUM_OF_GRAPH; i++) {
             long start_dijkstra = System.currentTimeMillis();
 
-            System.out.print("#" + i + " ");
+            System.out.print("#" + i + " Dijkstra : ");
             Dijkstra dijkstra = new Dijkstra();
             dijkstra.search(start, "Graph" + i + ".txt");
 

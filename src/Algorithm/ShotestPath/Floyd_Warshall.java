@@ -17,6 +17,11 @@ public class Floyd_Warshall {
             vertex.add(s);
         }
 
+        if (input_start >= vertex.size()) {
+            System.out.println("출발점이 범위를 벗어났습니다.");
+            return;
+        }
+
         int len = vertex.size();
 
         dist = new int[len][len];

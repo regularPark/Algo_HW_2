@@ -44,6 +44,11 @@ public class Prim {
             vertex.add(s);
         }
 
+        if(start_ >= vertex.size()) {
+            System.out.println("출발점이 범위에서 벗어났습니다.");
+            return;
+        }
+
         for (String[] c : vertex) {
             for (int i = 1; i < c.length; i += 2) {
                 Integer[] v = new Integer[3];

@@ -38,7 +38,7 @@ public class Kruskal {
             parent[i] = i;
         }
 
-        System.out.println("<선택된 간선>");
+        System.out.println("지나가는 간선");
         for (int i = 0; i < graph.size(); i++) {
             if (find(graph.get(i)[0]) != find(graph.get(i)[1])) {
                 System.out.print((char) (graph.get(i)[0] + 65) + " " + (char) (graph.get(i)[1] + 65) + " / ");
